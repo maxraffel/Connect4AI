@@ -16,13 +16,13 @@ TranspositionTable::TranspositionTable(int size) {
 
 int_fast8_t TranspositionTable::get(uint64_t key) const {
     TableEntry entry = contents[key % contents.size()];
-    if (entry.key == key) return entry.value;
+    if (entry.key == key) return entry.value - 2;
     return 0;
 }
 
-void TranspositionTable::set(uint64_t key, int_fast8_t value) {
+void TranspositionTable::set(uint64_t key, unsigned int value) {
     TableEntry entry;
-    entry.value = value;
+    entry.value = value + 2;
     entry.key = key;
     contents[key % contents.size()] = entry;
 }
