@@ -15,7 +15,7 @@ int main() {
     
     while (input != 'q') {
         cin >> input;
-        if (input > Position::mwidth || input <= 0) {
+        if (input > Position::mwidth || input <= 0 || !pos1.canPlay(input - 1)) {
             cout << "Invalid input" << endl;
             continue;
         }
