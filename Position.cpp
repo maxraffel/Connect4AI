@@ -4,9 +4,6 @@
 #include <cstdint>
 using namespace std;
 
-#ifndef POSITION_H
-#define POSITION_H
-
 // bitboard where each column counts up consecutively, ie column 0 starts at 0, then col 1 at height + 1, etc
 // starting from (0,0) in bottom left corner, each coordinate (w, h) corresponds to an int (mheight+1)*w + h
 
@@ -111,6 +108,10 @@ bool Position::isWinningMove(int x) {
     return hasWon(tempMask ^ tempPlayerMask);
 }
 
+bool Position::isDraw() {
+    return turnsPassed >= mwidth*mheight;
+}
+
 int Position::turns() const {
     return turnsPassed;
 }
@@ -118,5 +119,3 @@ int Position::turns() const {
 uint64_t Position::getKey() {
     return mask + currentPlayerMask;
 }
-
-#endif
